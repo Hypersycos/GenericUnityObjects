@@ -220,17 +220,16 @@
                    || assemblyName.StartsWith("UnityEditor.");
         }
 
-        private bool TypeAtGUIDIsSame()
-        {
-            string path = AssetDatabase.GUIDToAssetPath(GUID);
-            if (path.Length == 0)
-                return false;
+		private bool TypeAtGUIDIsSame()
+		{
+			string path = AssetDatabase.GUIDToAssetPath(GUID);
+			if (path.Length == 0)
+				return false;
 
-            var monoScript = AssetDatabase.LoadAssetAtPath<MonoScript>(path);
-            if (monoScript == null)
-                return false;
-
-            return Type == monoScript.GetClassType();
-        }
+			var monoScript = AssetDatabase.LoadAssetAtPath<MonoScript>(path);
+			if (monoScript == null)
+				return false;
+			return Type == monoScript.GetClassType(Type);
+		}
     }
 }
